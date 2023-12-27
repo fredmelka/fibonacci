@@ -259,9 +259,8 @@ This binary operation is a basic tool of linear algebra, and has numerous applic
 
 | Multiplicity | Operations |
 |:---:|:---:|
-| ![Condition](./img/condition.png) | ![Illustration](./img/product.png) |
-| The number of columns in the first matrix must be equal to the number of rows in the matrix. The result matrix has the number of rows of the first and the number of columns of the second matrix. | The figure above illustrates diagrammatically the product of two matrices $A$ and $B$, showing how each intersection in the product matrix corresponds to the **sumproduct** of a row in $A$ and a column in $B$. |
-
+| ![Condition](./img/cond.png) | ![Illustration](./img/prod.png) |
+| The number of columns in the first matrix must be equal to the number of rows in the matrix. The result matrix has the number of rows of the first and the number of columns of the second matrix. | The figure above illustrates diagrammatically the product of two matrices $A$ and $B$, showing how each intersection in the product matrix corresponds to the **sumproduct** of a row in **A** and a column in **B**. |
 </details>
 
 ### Computational algorithms
