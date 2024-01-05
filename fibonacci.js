@@ -1,5 +1,5 @@
 
-const n = 100;
+const n = 1000000;
 const _process = (fn) => {console.time(fn.name); fn(n); console.timeEnd(fn.name);};
 // Fibonacci Computational Methods
 
@@ -22,7 +22,7 @@ let matrixPower = (matrix, power) => {
     return multiplyMatrices(full, matrix);
 };
 let multiplyMatrices = (matrixA, matrixB) => {
-    let rows = matrixA.length; let cols = matrixA[0].length;
+    let rows = matrixA.length, cols = matrixA[0].length;
     let result = [[0n, 0n], [0n, 0n]];
 
     for (let row = 0; row < rows; row++) {
@@ -57,5 +57,15 @@ const recursiveIIFE = (n) =>
         let _2n1 = (_n * _n) + (_n1 * _n1);
         return n % 2 ? [_2n1, _2n + _2n1] : [_2n, _2n1];}
     );
+
+const exponentiatedBinet = (n) => {
+    if (n < 0) {return n % 2 == 0 ? -exponentiatedBinet(-n) : exponentiatedBinet(-n);};
+	n = n.toString(2);
+	let [a, b] = [1n, 1n];
+	for (let i = 1; i < n.length; i++) {
+		[a, b] = [(a * a + 5n * b * b) / 2n, a * b];
+		if (n[i] == 1) {[a, b] = [(a + b * 5n) / 2n, (a + b) / 2n];};};
+return b;
+};
 
 _process(doubleIdentityIterative);
