@@ -120,15 +120,15 @@ There are several methods for computing the value of a given $n^{th}$ term of Fi
 
 **Closed-form formula**
 
-Here the expression of one $n^{th}$ term is not a function of some previous terms. Like every sequence defined by a _linear recurrence with constant coefficients_, the Fibonacci sequence has got a closed-form expression. It has become known as **Binet's formula**, named after the French mathematician, though it was already known by _de Moivre_ (1718) and _Euler_ (1765):
+Here the expression of one $n^{th}$ term is not a function of some previous terms. Like every sequence defined by a _linear recurrence with constant coefficients_, the Fibonacci sequence has got a closed-form expression. It has become known as **Binet's formula**, named after the french mathematician, though it was already known by _Abraham de Moivre_ (1718) and _Leonhard Euler_ (1765):
 
 $$F_{n} = \cfrac{1}{\sqrt{5}} \Big( \varphi^{n} - \varphi'^{n} \Big) = \cfrac{1}{\sqrt{5}} \Big[ \Big( \cfrac{1 + \sqrt{5}}{2} \Big)^{n} - \Big( \cfrac{1 - \sqrt{5}}{2} \Big)^{n} \Big]$$
 
-One can quickly notice that the second term's absolute value is always less than $0.5$ for all $n\ge 0$, and more, it decreases exponentially. Hence, we could compute $F_{n}$ by **rounding**, using the _nearest integer function_:
+One can quickly notice that the second term's absolute value is always less than $0.5$ for all $n\ge 0$, and more, it decreases exponentially. Hence, one could compute $F_{n}$ by **rounding**, using the _nearest integer function_:
 
 $$\forall n\in \mathbb{N}^{+} \to F_{n} = \Big\lfloor \cfrac{\varphi^{n}}{\sqrt{5}} \Big\rceil$$
 
-Though the golden ratio $\varphi$ and its conjugate $\varphi'$ constitute an irrational pair of numbers, (each offsets other's infinity), yet the expression result is an integer number.
+Though the golden ratio $\varphi$ and its conjugate $\varphi'$ constitute a pair of irrational numbers (each offsets other's infinity), yet the expression result is an integer number.
 
 **Matrix form**
 
@@ -257,7 +257,7 @@ Therefore,
 
 $${\color{green} (i) \to F_{2n-1} = F_{n}^{2} + F_{n-1}^{2}} \quad {\color{blue}(ii) \to F_{2n} = F_{n} \times \Big[2\times F_{n+1} - F_{n}\Big]} \quad {\color{red}(iii) \to F_{2n+1} = F_{n+1}^{2} + F_{n}^{2}}$$
 
-Other notable properties
+Other notable properties:
 
 - Cassini's identity is $F_{n-1}F_{n+1} - F_{n}^{2} = (-1)^{n}$
 - Addition rule is $F_{n+p} = F_{p}F_{n+1} + F_{p-1}F_{n} = F_{n}F_{p+1} + F_{n-1}F_{p}$
@@ -310,7 +310,7 @@ A primary difference is that recursion can be employed as a solution without pri
 <summary>Iterative code</summary>
 
 ```javascript
-const dynamic = (n) => {let [a, b]=[1, 0]; for (let i=2; i<=n; i++) {[a, b]=[a + b, a]}; return a;};
+let dynamic = (n) => {let [a, b] = [1, 0]; for (let i=2; i<=n; i++) {[a, b] = [a + b, a]}; return a;};
 ```
 </details>
 
@@ -319,7 +319,7 @@ const dynamic = (n) => {let [a, b]=[1, 0]; for (let i=2; i<=n; i++) {[a, b]=[a +
 The algorithm is executing the simple-looking matrix form $(b)$ of the Fibonacci sequence.
 
 $$  (b)
-    \quad
+    \to
     \begin{bmatrix}
     1 & 1 \\
     1 & 0
@@ -334,23 +334,23 @@ Running the equation step by step, $F_{1},\dots,F_{n-1},F_{n}$, would degenerate
 
 **Binary exponentiation** is a general method for faster computation of large powers of a number, or a _square matrix_ (also called _double and add_). It is a corollary of the powerful **divide and conquer** algorithm paradigm. The process consists of repeatedly computing the _squaring_ of $x$ on the observation that for any $n$:
 
-$$ n\in \mathbb{N}^{+} x^{n} =
+$$  x^{0}=1
+    \quad \mid \quad
+    n\in \mathbb{N}^{+} x^{n} =
     \begin{cases}
         \big(x^{2}\big)^{\frac{n}{2}} & n_{even} \\
         x\big(x^{2}\big)^{\frac{n-1}{2}} & n_{odd}       
     \end{cases}
     \quad \mid \quad
-    x^{0}=1
-    \quad \mid \quad
     n\in \mathbb{Z}^{-} x^{-n} \iff \Big(\cfrac{1}{x}\Big)^{n} $$
 
 Combined with the [**binary expression**](https://en.wikipedia.org/wiki/Binary_number) of the exponent $n$, the algorithm conveniently loops to calculating the power $2$ of the preceeding iteration result where,
 
-- The number of squaring operations, also of iterations, is equal to the number of _bits_, i.e. $\lfloor log_{2}\text{ }n\rfloor$.<br/>Each of these steps doubles the exponentiation.
+- The total number of squaring operations, also of iterations, is equal to the number of _bits_, i.e. $\lfloor log_{2}\text{ }n\rfloor$.<br/>Each of these steps doubles the exponentiation.
 
 - A complementary simple multiplication by $x$ is performed when the iterated _bit_ is $1$.<br/>This increments the exponent by $1$ only.
 
-Logarithmic complexity $O(log_{n})$ of this algorithm outperforms the trivial method which runs in $O(n)$. For example, evaluating $F_{123456}$ takes only $17$ iterations with this process, while it will require $123456$ loops with a coding pattern that sticks to the vanilla Fibonacci formula.
+Logarithmic time complexity $O(log_{n})$ of this algorithm outperforms big time the trivial method which runs linearly in $O(n)$. Indeed, evaluating $F_{123456}$ takes only $17$ iterations with this process, while it will require $123456$ loops with a coding pattern that sticks to the vanilla Fibonacci formula.
 
 <details>
 <summary>Calculation example</summary>
@@ -368,7 +368,7 @@ $\quad 38 = (2^{5}\times 1) + (2^{4}\times 0) + (2^{3}\times 0) + (2^{2}\times 1
 | 4 | $1001{\color{blue}1}0$ | $\alpha^{9}$ | $9$ | $(\alpha^{9})^{2}\times \alpha^{1}$ | $19$ | $\alpha^{19}$ |
 | 5 | $10011{\color{blue}0}$ | $\alpha^{19}$ | $19$ | $(\alpha^{19})^{2}$ | $38$ | $\alpha^{38}$ |
 
-In the end, the iteration has performed $(c_{i}) \to \alpha^{38} = \Big[\big(\big(\big(\big(\big(\alpha^{0} \times \alpha\big) _{{\color{blue}1}}^{2}\big) _{{\color{blue}2}}^{2} \big) _{{\color{blue}4}}^{2} \times \alpha \big) _{{\color{blue}9}}^{2} \times \alpha \big) _{{\color{blue}19}}^{2}\Big] _{{\color{blue}38}}$.
+In the end, the framework has performed $(c_{i}) \to \alpha^{38} = \Big[\big(\big(\big(\big(\big(\alpha^{0} \times \alpha\big) _{{\color{blue}1}}^{2}\big) _{{\color{blue}2}}^{2} \big) _{{\color{blue}4}}^{2} \times \alpha \big) _{{\color{blue}9}}^{2} \times \alpha \big) _{{\color{blue}19}}^{2}\Big] _{{\color{blue}38}}$.
 
 Alternatively, one may also process according to $(c_{ii}) \to \alpha^{100110_{2}} = \alpha^{2^{5}} \times \alpha^{2^{2}} \times \alpha^{2^{1}} = \alpha^{32} \times \alpha^{4} \times \alpha^{2}$.
 </details>
@@ -376,13 +376,13 @@ Alternatively, one may also process according to $(c_{ii}) \to \alpha^{100110_{2
 <details>
 <summary>Programming examples</summary>
 
-Illustration of computation table above, running binary from _left_ to _right_.
+Illustration of computation table above, running binary representation from _left_ to _right_.
 
 ```javascript
 const formula_i = (x, n) => {let exp = 1, binary = n.toString(2);
 	for (let bit of binary) {exp *= exp; if (bit == 1) {exp *= x};}; return exp;};
 ```
-Alternative formula though not preferred, running binary from _right_ to _left_.
+Alternative formula though not preferred, running binary array from _right_ to _left_.
 
 ```javascript
 const formula_ii = (x, n) => {let exp = 1, binary = n.toString(2), i = binary.length - 1;
@@ -424,13 +424,13 @@ Exponentiation by _squaring_ can be viewed as a suboptimal **addition-chain** ex
 
 **Fast double**
 
-The matrix exponentiation method allows for working fast the sequence up to determining a great Fibonacci number of whereas before it was endlessly slow. Nevertheless, computing the whole matrix ends up to redundant calculations as various cells contain identical values. Using the **double identities** instead address this concern.
+The matrix exponentiation method allows for working fast the sequence up to determining a great Fibonacci number while before it was endlessly slow. Nevertheless, computing the whole matrix ends up to redundant calculations as various cells contain identical values. Using the **double identities** instead address this concern.
 
 $$ (ii) \to F_{2n} = F_{n} \times \Big[2\times F_{n+1} - F_{n}\Big] $$
 
 $$ (iii) \to F_{2n+1} = F_{n+1}^{2} + F_{n}^{2} $$
 
-It is worth pointing out the strength of **pair induction** versus a simple relation which can lead to a dead-end or partial sequencing. Indeed, simple induction like $n\to 2n$ would only jump on _double bases_ like so $F_{1} \to F_{2} \to \dots \to F_{2^{k}}$ which is not sufficient. On the contrary, multiple induction allows to calculate indefinitely values of the sequence. First, one starts with $n$ and its adjacents $(n-1)$ $(n+1)$, then induces $(2n-1), (2n), (2n+1)$, which can be pursued thereafter independently from any of the three latter points (somehow _horizontally_ and _vertically_), and so on, over again, leading to infinite induction and complete sequencing.
+It is worth pointing out the strength of **pair induction** versus a simple relation which can lead to a dead-end or to partial sequencing. Indeed, one single induction like $n\to 2n$ would only jump on _double bases_ like so $F_{1} \to F_{2} \to \dots \to F_{2^{k}}$ which is not sufficient. On the contrary, multiple induction allows to calculate indefinitely values of the sequence. First, one starts with $n$ and its adjacents $(n-1)$ $(n+1)$, then induces $(2n-1), (2n), (2n+1)$, which can be pursued thereafter independently from any of the three latter points (somehow _horizontally_ and _vertically_), and so on, over again, leading to infinite induction and complete sequencing.
 
 $$  \begin{cases}
         F_{0} \\
@@ -451,11 +451,17 @@ $$  \begin{cases}
     \end{cases}
     \text{or}
     \begin{cases}
-        F_{2n} \\
         F_{2n+1} \\
-        F_{2n+2}
+        F_{2n+2} \\
+        F_{2n+3}
     \end{cases}
-    \quad \dots \quad \to
+    \text{or}
+    \begin{cases}
+        F_{2n-3} \\
+        F_{2n-2} \\
+        F_{2n-1}
+    \end{cases}
+    \quad \dots \to
         \begin{cases}
         F_{4n-1} \\
         F_{4n} \\
@@ -510,7 +516,7 @@ $\quad 28143378001\times 5465167948001\times 84817574770589638001\times 15841416
 
 **Symbolic algebra** approach can remove the floating-point difficulty provided with $\varphi$ and $\varphi'$. The idea is to not compute $\sqrt{5}$. It consists of setting a representation $\alpha=(a,b)$ analogous to _complex numbers_:
 
-$$\alpha = (a,b) \iff \cfrac{1}{2}\times (a+b\sqrt{5})$$
+$$\alpha = (a,b) \iff \alpha = \cfrac{1}{2}\times (a+b\sqrt{5})$$
 
 - $a$ and $b$ being respectively the **real** and **algebraic** parts of $\alpha$.
 - Obviously, $(1,1)\iff \varphi$ and $(1,-1)\iff \varphi'$. Besides $(2,0)\iff 1$.
@@ -533,7 +539,7 @@ It is deduced the **straightforward** and surprisingly **costless result**:
 
 $$F_{n} = {\color{blue}b} \gets \varphi^{n} = (a,{\color{blue}b})$$
 
-Additionally this approach is meant to be run using **binary exponentiation**.
+Obviously this approach is meant to be run using **binary exponentiation**.
 
 <details>
 <summary>Caveat</summary>
@@ -562,7 +568,7 @@ Here a good illutration that **bisect paradigm** is a paramount optimization too
 Some notable examples of _divide-and-conquer_ frameworks:
 - The **mergesort** algorithm, invented by _John von Neumann_ in 1945, specifically developed for computers,
 - The ancient _Euclidean_ algorithm to determine the **greatest common denominator** of two numbers,
-- the **Karatsuba multiplication** algorithm that performs multiplication of two $n$-digits integers in $O(n^{log_{2}^{3}})$.
+- The **Karatsuba** algorithm that achieves multiplication of two $n$-digits integers in $O(n^{log_{2}^{3}})$.
 
 In computer science, $O$ notation characterizes the **asymptotic analysis** of an algorithm or a function when the argument tends towards _infinity_ typically, or sometimes towards a particular value. The letter $O$ was chosen by its inventor Paul Bachmann to stand for _Ordnung_, meaning _order of approximation_.
 
@@ -593,18 +599,20 @@ In a nutshell, one algorithm time complexity could be intuitively spotted like s
 
 | With this rule of thumb, chances are.. | Notation | Class | Example |
 |:---------|:------|:--------------|:--------|
-| Whenever the number of steps is _constant_ whatever the size of the input ($1$, $12$ or even $143$ steps, but fixed!) | $O(1)$ | constant | lookup table |
+| Whenever the number of steps is _constant_ whatever the size of the input ($1$, $12$ or $143$ steps, but fixed!) | $O(1)$ | constant | lookup table |
 | Anytime a problem can be _divided_ over again into $k$ smaller identical subproblems | $O(log_{k}n)$ | logarithmic | binary search |
 | Whenever algorithm is _linearly_ processing $k$ actions for each input but traverses the input only one time | $O(n)$ | linear | read the book |
 | When it involves _walking through the input about input times_, or keeps _swooping through_ with nested loops | $O(n^{2})$ | quadratic | school multiplication, bubblesort |
 | Anytime the growth rate in time _doubles_ or $k$ _multiplies_ for each increment to the input size | $O(k^{n})$ | exponential | plain Fibonacci, <br/> password bruteforce |
 | When the running time grows in a factorial way like for generating all unrestricted permutations | $O(n!)$ | factorial | travelling salesman problem via bruteforce |
 
-Generally speaking, a sublinear time is considered fast whereas complexities higher than linearithmic are said slow. Typically there is a **tradeoff** **time vs. space** (more relevant decades ago than nowadays) or _time vs intelligence_ (e.g. effort in writing a more sophisticated model).
+Generally speaking, sublinear time is considered fast whereas complexities higher than linearithmic are rather said slow. Typically there is a **tradeoff** **time vs. space** (it was more relevant decades ago than nowadays since space has become cheap) or _time vs intelligence_ (e.g. effort in writing a more sophisticated model).
 
 To end with, together with $O$ notation for worst-case classification, there exists the corresponding notations:
-- $\Omega$ is expressing the lower bound (or _best case_) of the algorithm,
+- $\Omega$ is expressing the lower bound, i.e. the _best case_, of the algorithm,
 - $\Theta$ is used when $O = $\Omega$.
+
+**Illustrations**
 
 | merge sort | binary search | hash table |
 |:---------:|:-------------:|:----------:|
@@ -612,6 +620,42 @@ To end with, together with $O$ notation for worst-case classification, there exi
 | Mergesort is an efficient **linearithmic** general-purpose sorting algorithm. Most implementations are stable meaning the relative order of equal elements remains. | It runs in logarithmic time in worst case and can solve a wide range of problems like finding the _next smallest_ or _next largest_ item relative to a target. | Associative array that maps keys to values, uses a **hash code** to compute an index from which the desired value is found. On average more efficient than search trees. |
 
 ### Fun stuff :tada:
+
+Occurences of the Fibonacci sequence are countless in life. It is fair to say the Golden ratio $\varphi $ has inspired greatest minds of all ages and all disciplines like no other number in the history. The idea of an omnipresence of the golden ratio is often taken up. Nonetheless, divergence of opinion about this question raises up for the natural sciences because it largley depends on the criteria allowing the golden ratio to be linked or not to a phenomenon.
+
+Here are a selection of practical _easy access_ uses around Fibonacci sequence.
+
+**Miles to Kilometers**
+
+Because $1$ mile $\sim 1.609$ meters and $F_{n+1} / F_{n} = \varphi \sim 1.6180$, one practical use of the Fibonacci sequence is converting kilometers to miles for comparing distance measures. Shifting forward one point along the sequence converts to kilometers while one jump backward translates to miles.
+
+- $8$ miles $\to 13$ kilometers similarly $F_{5} \sim 8 \times \varphi \sim F_{5+1} = 13$.
+- $55$ kilometers $\to 34$ miles follows sequence like so $F_{10}\sim 55 / \varphi \sim F_{9} \sim 34$.
+
+**Enumerative problems**
+
+Fibonacci numbers give solution to certain enumerative problems, including the rabbit problem stated by Fibonacci himself! One most common of which is that of counting the number of ways of writing a given number $n$ as an ordered sum of $1$ and $2$, i.e. $(1,2)$ **restricted compositions**.
+
+There are actually $F_{n+1}$ compositions.
+
+For example with $n=5$, there are $F_{5+1}=F_{6}=8$ ways one can climb a staircase of $5$ steps, taking either one or two steps at a time.
+
+$\quad n=5$<br/>
+$\quad =(1+1+1+1+1)_{1}=(2+1+1+1)_{2}=(1+2+1+1)_{3}=(1+1+2+1)_{4}=(2+2+1)_{5}$<br/>
+$\quad =(1+1+1+2)_{6}=(2+1+2)_{7}=(1+2+2)_{8}$
+
+The example illustrates the evidence that the number of compositions $C_{n}$ is the sum of:
+- $C_{n-1}$, being the number of compositions that express the number $(n-1)$, to which one would add $1$, that is to say also the number of compositions for $C_{n}$ ending with $1$, and 
+- $C_{n-2}$, as the number of ways to write $(n-2)$ to which one would rather $2$, also being the number of compositions for $C_{n}$ that ends by $2$.
+
+Given base cases $C_{1}=1\text{ } \big(F_{2}\big)$ and $C_{2}=2\text{ } \big(F_{3}\big)$, meaning shifting one increment to get $F_{n+1}\to C_{n}$: 
+
+$$ C_{n} = C_{n-1} + C_{n-2} = F_{n+1} $$
+
+Same enumerative challenge could be expressed like so:
+- Number of ways of emptying a drum of $n$ liters with the help of containers of one or two liters capacity,
+- Number of different domino tilings of the $2\times n$ plan. 
+
 
 ### Caveats
 
@@ -679,6 +723,7 @@ https://wimal-perera.medium.com/golden-ratio-and-fibonacci-numbers-the-ultimate-
 https://library.ethz.ch/en/locations-and-media/platforms/virtual-exhibitions/fibonacci-un-ponte-sul-mediterraneo/reception-of-fibonacci-numbers-and-the-golden-ratio/euclid-construction-of-the-golden-ratio.html
 
 <!-- FUN -->
+https://fr.wikipedia.org/wiki/Suite_de_Fibonacci#Interpr%C3%A9tations_combinatoires
 https://www.cantorsparadise.com/why-does-1-89-represent-the-fibonacci-sequence-7e09873533c3
 https://fr.wikipedia.org/wiki/Suite_de_Fibonacci#Interpr%C3%A9tations_combinatoires
 https://engrmuhammadusman108.medium.com/kilometres-to-miles-conversion-approximation-of-fibonacci-series-d824add3d89c
