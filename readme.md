@@ -87,7 +87,9 @@ Fibonacci numbers are strongly related to the **Golden ratio**. The figure is a 
 >
 > > _A straight line is said to have been cut in extreme and mean ratio when, as the whole line is to the greater segment, so is the greater to the lesser._
 
-The eleventh proposition of second book offers a construction of the golden ratio : [Liber II - Proposition 11](https://www.youtube.com/watch?v=kIGG1bdSLN4).
+The eleventh proposition of second book offers a construction of the golden ratio.
+
+[![Liber II - Proposition 11](./img/goldenratio.jpg)](https://www.youtube.com/watch?v=kIGG1bdSLN4)
 
 The **Elements**, written in thirteen books (i.e. chapters) is the most famous and scientifically most significant work by the Greek mathematician Euclid. After the Bible, it is the most printed and studied book in the history of the western world. It represents geometry as a logically self-​contained system built on a **handful of definitions, postulates and axioms**. Besides geometry grounds, it contains everything known at that time about number theory. Here too there were for the first time important findings on prime numbers.
 
@@ -359,14 +361,14 @@ Exponentiation by squaring for $\alpha^{n}$ with $n=38$. Recall in binary:
 
 $\quad 38 = (2^{5}\times 1) + (2^{4}\times 0) + (2^{3}\times 0) + (2^{2}\times 1) + (2^{1}\times 1) + (2^{0}\times 0) = 32+0+0+4+2+0 = 100110_{2}$.
 
-| _i_ | bit | $\alpha^{n}_{start}$ | $n_{start}$ | operation | $n_{end}$ | result |
-|-----|-----|-----|-----|-----|-----|-----|
-| 0 | ${\color{blue}1}00110$ | $\alpha^{0} = 1$ | $0$ | $\alpha^{2}\times \alpha^{1} = \alpha^{1}$ | $1$ | $\alpha$ |
+| _i_ | bit | $\alpha^{n}_{start}$ | $n_{start}$ | operation | $n_{end}$ | result |   |
+|-----|-----|-----|-----|-----|-----|-----|:----|
+| 0 | ${\color{blue}1}00110$ | $\alpha^{0} = 1$ | $0$ | $\alpha^{2}\times \alpha^{1} = \alpha^{1}$ | $1$ | $\alpha$ | **MSb** _most significant bit_ |
 | 1 | $1{\color{blue}0}0110$ | $\alpha^{1}$ | $1$ | $(\alpha^{1})^{2}$ | $2$ | $\alpha^{2}$ |
 | 2 | $10{\color{blue}0}110$ | $\alpha^{2}$ | $2$ | $(\alpha^{2})^{2}$ | $4$ | $\alpha^{4}$ |
 | 3 | $100{\color{blue}1}10$ | $\alpha^{4}$ | $4$ | $(\alpha^{4})^{2}\times \alpha^{1}$ | $9$ | $\alpha^{9}$ |
 | 4 | $1001{\color{blue}1}0$ | $\alpha^{9}$ | $9$ | $(\alpha^{9})^{2}\times \alpha^{1}$ | $19$ | $\alpha^{19}$ |
-| 5 | $10011{\color{blue}0}$ | $\alpha^{19}$ | $19$ | $(\alpha^{19})^{2}$ | $38$ | $\alpha^{38}$ |
+| 5 | $10011{\color{blue}0}$ | $\alpha^{19}$ | $19$ | $(\alpha^{19})^{2}$ | $38$ | $\alpha^{38}$ | **LSb** _least significant bit_ |
 
 In the end, the framework has performed $(c_{i}) \to \alpha^{38} = \Big[\big(\big(\big(\big(\big(\alpha^{0} \times \alpha\big) _{{\color{blue}1}}^{2}\big) _{{\color{blue}2}}^{2} \big) _{{\color{blue}4}}^{2} \times \alpha \big) _{{\color{blue}9}}^{2} \times \alpha \big) _{{\color{blue}19}}^{2}\Big] _{{\color{blue}38}}$.
 
@@ -376,13 +378,13 @@ Alternatively, one may also process according to $(c_{ii}) \to \alpha^{100110_{2
 <details>
 <summary>Programming examples</summary>
 
-Illustration of computation table above, running binary representation from _left_ to _right_.
+Illustration of computation table above, running binary representation from _left_ to _right_ (**MSb to LSb**)
 
 ```javascript
 const formula_i = (x, n) => {let exp = 1, binary = n.toString(2);
 	for (let bit of binary) {exp *= exp; if (bit == 1) {exp *= x};}; return exp;};
 ```
-Alternative formula though not preferred, running binary array from _right_ to _left_.
+Alternative formula though not preferred, running binary array from _right_ to _left_ (**LSb to MSb**).
 
 ```javascript
 const formula_ii = (x, n) => {let exp = 1, binary = n.toString(2), i = binary.length - 1;
@@ -455,7 +457,7 @@ $$  \begin{cases}
         F_{2n+2} \\
         F_{2n+3}
     \end{cases}
-    \text{or}
+    \text{ or}
     \begin{cases}
         F_{2n-3} \\
         F_{2n-2} \\
@@ -479,7 +481,7 @@ $$  \begin{cases}
         F_{4n-2} \\
         F_{4n-1}
     \end{cases}
-    \quad \dots $$
+    \quad \dots \to $$
 
 <details>
 <summary>Iterative code</summary>
@@ -563,7 +565,7 @@ Programming patterns of the Fibonacci sequence exhibit a large range of algorith
 | Fast double | $O(log_{n})$ | $F_{1\text{ }000\text{ }000} \to 40ms\sim 45ms$ |
 | Binet algebraic | $O(log_{n})$ | $F_{1\text{ }000\text{ }000} \to 40ms\sim 45ms$ |
 
-Here a good illutration that **bisect paradigm** is a paramount optimization tool which often leads to an improvement of the **asymptotic cost** of the solution. If $(i)$ the base cases have constant-bounded size, the work of splitting the problem and combining the partial solutions is proportional to the problem's size $n$, and $(ii)$ there is a bounded number $p$ of sub-problems of size  $\displaystyle \sim n/p$ at each stage, then the cost of the algorithm will be **logarithmic** like so $O(n log_{p} n)$.
+Here a good illutration that **bisect paradigm** is a paramount optimization tool which often leads to an improvement of the **asymptotic cost** of the solution. If $(i)$ the base cases have constant-bounded size, the work of splitting the problem and combining the partial solutions is proportional to the problem's size $n$, and $(ii)$ there is a bounded number $p$ of sub-problems of size  $\displaystyle \sim n/p$ at each stage, then the cost of the algorithm will be **logarithmic** like so $O(n \text{ } log_{p} n)$.
 
 Some notable examples of _divide-and-conquer_ frameworks:
 - The **mergesort** algorithm, invented by _John von Neumann_ in 1945, specifically developed for computers,
@@ -606,11 +608,11 @@ In a nutshell, one algorithm time complexity could be intuitively spotted like s
 | Anytime the growth rate in time _doubles_ or $k$ _multiplies_ for each increment to the input size | $O(k^{n})$ | exponential | plain Fibonacci, <br/> password bruteforce |
 | When the running time grows in a factorial way like for generating all unrestricted permutations | $O(n!)$ | factorial | travelling salesman problem via bruteforce |
 
-Generally speaking, sublinear time is considered fast whereas complexities higher than linearithmic are rather said slow. Typically there is a **tradeoff** **time vs. space** (it was more relevant decades ago than nowadays since space has become cheap) or _time vs intelligence_ (e.g. effort in writing a more sophisticated model).
+Generally speaking, sublinear time is considered fast whereas complexities higher than **linearithmic** are rather said slow. Typically there is a **tradeoff** **time vs. space** (it was more relevant decades ago than nowadays since space has become cheap) or **time over intelligence** (e.g. effort in writing a more sophisticated model).
 
 To end with, together with $O$ notation for worst-case classification, there exists the corresponding notations:
 - $\Omega$ is expressing the lower bound, i.e. the _best case_, of the algorithm,
-- $\Theta$ is used when $O = $\Omega$.
+- $\Theta$ is used when $O = \Omega$.
 
 **Illustrations**
 
@@ -619,9 +621,11 @@ To end with, together with $O$ notation for worst-case classification, there exi
 | ![mergesort](./img/mergesort.png) | ![binarysearch](./img/binarysearch.png) | ![hashtable](./img/hashtable.png) |
 | Mergesort is an efficient **linearithmic** general-purpose sorting algorithm. Most implementations are stable meaning the relative order of equal elements remains. | It runs in logarithmic time in worst case and can solve a wide range of problems like finding the _next smallest_ or _next largest_ item relative to a target. | Associative array that maps keys to values, uses a **hash code** to compute an index from which the desired value is found. On average more efficient than search trees. |
 
-### Fun stuff :tada:
+### Fun stuff [:tada:](https://www.nayuki.io/category/programming)
 
-Occurences of the Fibonacci sequence are countless in life. It is fair to say $\varphi$ has inspired many greatest minds of all ages and all disciplines like no other number in history. The idea of an omnipresence of the golden ratio is often taken up. Nonetheless, divergence of opinion about this question raises up for the natural sciences because it largley depends on the criteria allowing the golden ratio to be linked or not to a phenomenon.
+Occurences of the Fibonacci sequence are countless in life.
+
+It is fair to say $\varphi$ has inspired many greatest minds of all ages and all disciplines like no other number in history. The idea of an omnipresence of the golden ratio is often taken up. Nonetheless, divergence of opinion about this question raises up for the natural sciences because it largley depends on the criteria allowing the golden ratio to be linked or not to a phenomenon.
 
 Here are a selection of practical _easy access_ uses around Fibonacci sequence.
 
@@ -629,8 +633,8 @@ Here are a selection of practical _easy access_ uses around Fibonacci sequence.
 
 Because $1$ mile $\sim 1.609$ meters and $F_{n+1} / F_{n} = \varphi \sim 1.6180$, one practical use of the Fibonacci sequence is converting kilometers to miles for comparing distance measures. Shifting forward one point along the sequence converts to kilometers while one jump backward translates to miles.
 
-- $8$ miles $\to 13$ kilometers, similarly as $F_{5} = 8$ and $F_{5} \times \varphi = F_{5+1} = 13$.
-- $55$ kilometers $\gets 34$ miles follows sequence like so $F_{10} = 55$ and $55 / \varphi \sim F_{9} = 34$.
+- $8$ miles $\to 13$ kilometers, similarly as $F_{5} = 8$ and $F_{5} \times \varphi \sim F_{5+1} = 13$.
+- $55$ km/h $\gets 34$ mph follows sequence like so $F_{10} = 55$ and $55 / \varphi \sim F_{9} = 34$.
 
 **Enumerative problems**
 
@@ -648,13 +652,27 @@ The example illustrates the evidence that the number of compositions $C_{n}$ is 
 - $C_{n-1}$, the number of compositions that express $(n-1)$, to which one would add $1$, being also the number of compositions for $C_{n}$ ending with $1$, and 
 - $C_{n-2}$, the number of ways to write $(n-2)$, to which one would logically $2$, also being the number of compositions for $C_{n}$ that ends by $2$.
 
-Given base cases $C_{1}=1\text{ } \big(F_{2}\big)$ and $C_{2}=2\text{ } \big(F_{3}\big)$, hence meaning shifting one increment to get $F_{n+1}\to C_{n}$: 
+Given base cases $C_{1}=1\text{ } \big(F_{2}\big)$ and $C_{2}=2\text{ } \big(F_{3}\big)$, hence meaning shifting $1$ increment to get $F_{n+1}\to C_{n}$: 
 
 $$ C_{n} = C_{n-1} + C_{n-2} = F_{n+1} $$
 
-Similar solution challenges are expressed like so:
-- Number of ways of emptying a drum of $n$ liters with the help of containers of one or two liters capacity,
-- Number of different domino tilings of the $2\times n$ plan. 
+Different _stories told_ for an identical solution are like so:
+- Number of ways of **emptying a drum** of $n$ liters with the help of containers of either one or two liters capacity,
+- Number of different **domino tilings** of the $2\times n$ plan. 
+
+**Heads or tails**
+
+$F_{n+2}$ is the number of plays $P_{n}$ in a serie of length $n$ draws without consecutive _tails_. For example, out of the $16$ binary string possibilities for a game of length $n=4$, there are $F_{6}=8$ without two _tails_ in a row:
+
+$\quad 0000, 0001, 0010, 0100, 0101, 1000, 1001$ and $1010$.
+
+In order to build a game of length $n$ where no two consecutive _tails_ are drawn, one can either start with a _heads_ plus a game of length $(n-1)$, or start with a _tails_ $+$ _heads_ then a game of length $(n-2)$. Hence $P_{n} = P_{n-1} + P_{n-2}$.
+
+Given base cases $P_{1}=2\text{ } \big(F_{3}\big)$ and $P_{2}=3\text{ } \big(F_{4}\big)$, hence meaning shifting by $2$ increments to get $F_{n+2}\to C_{n}$:
+
+$$ P_{n} = P_{n-1} + P_{n-2} = F_{n+2} $$
+
+An other problem share this solution, the number of subsets S of $(1,...,n)$ without consecutive integers.
 
 ### Caveats
 
