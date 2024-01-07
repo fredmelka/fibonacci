@@ -310,7 +310,7 @@ A primary difference is that recursion can be employed as a solution without pri
 <summary>Iterative code</summary>
 
 ```javascript
-let dynamic = (n) => {let [a, b] = [1, 0]; for (let i=2; i<=n; i++) {[a, b] = [a + b, a]}; return a;};
+let dynamic = (n) => {let [a, b]=[1, 0]; for (let i=2; i<=n; i++) {[a, b]=[a + b, a]}; return a;};
 ```
 </details>
 
@@ -621,7 +621,7 @@ To end with, together with $O$ notation for worst-case classification, there exi
 
 ### Fun stuff :tada:
 
-Occurences of the Fibonacci sequence are countless in life. It is fair to say the Golden ratio $\varphi $ has inspired greatest minds of all ages and all disciplines like no other number in the history. The idea of an omnipresence of the golden ratio is often taken up. Nonetheless, divergence of opinion about this question raises up for the natural sciences because it largley depends on the criteria allowing the golden ratio to be linked or not to a phenomenon.
+Occurences of the Fibonacci sequence are countless in life. It is fair to say $\varphi$ has inspired many greatest minds of all ages and all disciplines like no other number in history. The idea of an omnipresence of the golden ratio is often taken up. Nonetheless, divergence of opinion about this question raises up for the natural sciences because it largley depends on the criteria allowing the golden ratio to be linked or not to a phenomenon.
 
 Here are a selection of practical _easy access_ uses around Fibonacci sequence.
 
@@ -629,33 +629,32 @@ Here are a selection of practical _easy access_ uses around Fibonacci sequence.
 
 Because $1$ mile $\sim 1.609$ meters and $F_{n+1} / F_{n} = \varphi \sim 1.6180$, one practical use of the Fibonacci sequence is converting kilometers to miles for comparing distance measures. Shifting forward one point along the sequence converts to kilometers while one jump backward translates to miles.
 
-- $8$ miles $\to 13$ kilometers similarly $F_{5} \sim 8 \times \varphi \sim F_{5+1} = 13$.
-- $55$ kilometers $\to 34$ miles follows sequence like so $F_{10}\sim 55 / \varphi \sim F_{9} \sim 34$.
+- $8$ miles $\to 13$ kilometers, similarly as $F_{5} = 8$ and $F_{5} \times \varphi = F_{5+1} = 13$.
+- $55$ kilometers $\gets 34$ miles follows sequence like so $F_{10} = 55$ and $55 / \varphi \sim F_{9} = 34$.
 
 **Enumerative problems**
 
-Fibonacci numbers give solution to certain enumerative problems, including the rabbit problem stated by Fibonacci himself! One most common of which is that of counting the number of ways of writing a given number $n$ as an ordered sum of $1$ and $2$, i.e. $(1,2)$ **restricted compositions**.
+Fibonacci numbers give solution to certain enumerative problems, including the **rabbit problem** stated by Fibonacci himself! One most common of which is counting the number of ways of writing a given number $n$ as an ordered sum made up of $1$ and/or $2$, i.e. $(1,2)$-**restricted compositions**.
 
 There are actually $F_{n+1}$ compositions.
 
 For example with $n=5$, there are $F_{5+1}=F_{6}=8$ ways one can climb a staircase of $5$ steps, taking either one or two steps at a time.
 
-$\quad n=5$<br/>
-$\quad =(1+1+1+1+1)_{1}=(2+1+1+1)_{2}=(1+2+1+1)_{3}=(1+1+2+1)_{4}=(2+2+1)_{5}$<br/>
-$\quad =(1+1+1+2)_{6}=(2+1+2)_{7}=(1+2+2)_{8}$
+$\quad n=5$ <br/>
+$\quad =(1+1+1+1+1) _{1} = (2+1+1+1) _{2} = (1+2+1+1) _{3} = (1+1+2+1) _{4} = (2+2+1) _{5}$<br/>
+$\quad =(1+1+1+2) _{6} = (2+1+2) _{7} = (1+2+2) _{8}$
 
 The example illustrates the evidence that the number of compositions $C_{n}$ is the sum of:
-- $C_{n-1}$, being the number of compositions that express the number $(n-1)$, to which one would add $1$, that is to say also the number of compositions for $C_{n}$ ending with $1$, and 
-- $C_{n-2}$, as the number of ways to write $(n-2)$ to which one would rather $2$, also being the number of compositions for $C_{n}$ that ends by $2$.
+- $C_{n-1}$, the number of compositions that express $(n-1)$, to which one would add $1$, being also the number of compositions for $C_{n}$ ending with $1$, and 
+- $C_{n-2}$, the number of ways to write $(n-2)$, to which one would logically $2$, also being the number of compositions for $C_{n}$ that ends by $2$.
 
-Given base cases $C_{1}=1\text{ } \big(F_{2}\big)$ and $C_{2}=2\text{ } \big(F_{3}\big)$, meaning shifting one increment to get $F_{n+1}\to C_{n}$: 
+Given base cases $C_{1}=1\text{ } \big(F_{2}\big)$ and $C_{2}=2\text{ } \big(F_{3}\big)$, hence meaning shifting one increment to get $F_{n+1}\to C_{n}$: 
 
 $$ C_{n} = C_{n-1} + C_{n-2} = F_{n+1} $$
 
-Same enumerative challenge could be expressed like so:
+Similar solution challenges are expressed like so:
 - Number of ways of emptying a drum of $n$ liters with the help of containers of one or two liters capacity,
 - Number of different domino tilings of the $2\times n$ plan. 
-
 
 ### Caveats
 
