@@ -89,7 +89,7 @@ Fibonacci numbers are strongly related to the **Golden ratio**. The figure is a 
 
 The eleventh proposition of second book offers a construction of the golden ratio.
 
-[![Liber II - Proposition 11](./img/goldenratio.jpg)](https://www.youtube.com/watch?v=kIGG1bdSLN4)
+![Liber II - Proposition 11](./img/goldenratio.jpg)
 
 The **Elements**, written in thirteen books (i.e. chapters) is the most famous and scientifically most significant work by the Greek mathematician Euclid. After the Bible, it is the most printed and studied book in the history of the western world. It represents geometry as a logically self-​contained system built on a **handful of definitions, postulates and axioms**. Besides geometry grounds, it contains everything known at that time about number theory. Here too there were for the first time important findings on prime numbers.
 
@@ -312,7 +312,7 @@ A primary difference is that recursion can be employed as a solution without pri
 <summary>Iterative code</summary>
 
 ```javascript
-let dynamic = (n) => {let [a, b]=[1, 0]; for (let i=2; i<=n; i++) {[a, b]=[a + b, a]}; return a;};
+let dynamic = (n) => {let [a, b]=[1, 0]; for (let i=2; i<=n; i++) {[a, b]=[a + b, a];}; return a;};
 ```
 </details>
 
@@ -378,17 +378,18 @@ Alternatively, one may also process according to $(c_{ii}) \to \alpha^{100110_{2
 <details>
 <summary>Programming examples</summary>
 
-Illustration of computation table above, running binary representation from _left_ to _right_ (**MSb to LSb**)
+Illustration of computation table above, running binary representation from _left_ to _right_ (**MSb** to **LSb**)
 
 ```javascript
 const formula_i = (x, n) => {let exp = 1, binary = n.toString(2);
-	for (let bit of binary) {exp *= exp; if (bit == 1) {exp *= x};}; return exp;};
+	for (let bit of binary) {exp *= exp; if (bit == 1) {exp *= x;};}; return exp;};
 ```
-Alternative formula though not preferred, running binary array from _right_ to _left_ (**LSb to MSb**).
+
+Alternative formula though not preferred, running binary array from _right_ to _left_ (**LSb** to **MSb**).
 
 ```javascript
 const formula_ii = (x, n) => {let exp = 1, binary = n.toString(2), i = binary.length - 1;
-	do {if (binary[i] == 1) {exp *= x}; x *= x;} while (i--); return exp;};
+	do {if (binary[i] == 1) {exp *= x;}; x *= x;} while (i--); return exp;};
 ```
 
 Iterative version with constant auxiliairy memory `y`. 
@@ -432,7 +433,7 @@ $$ (ii) \to F_{2n} = F_{n} \times \Big[2\times F_{n+1} - F_{n}\Big] $$
 
 $$ (iii) \to F_{2n+1} = F_{n+1}^{2} + F_{n}^{2} $$
 
-It is worth pointing out the strength of **pair induction** versus a simple relation which can lead to a dead-end or to partial sequencing. Indeed, one single induction like $n\to 2n$ would only jump on _double bases_ like so $F_{1} \to F_{2} \to \dots \to F_{2^{k}}$ which is not sufficient. On the contrary, multiple induction allows to calculate indefinitely values of the sequence. First, one starts with $n$ and its adjacents $(n-1)$ $(n+1)$, then induces $(2n-1), (2n), (2n+1)$, which can be pursued thereafter independently from any of the three latter points (somehow _horizontally_ and _vertically_), and so on, over again, leading to infinite induction and complete sequencing.
+It is worth pointing out the **strength of pair induction** versus a simple relation which can lead to a dead-end or to partial sequencing. Indeed, a single induction like $n\to 2n$ would only jump onto _doubles_ like so $F_{1} \to F_{2} \to \dots \to F_{2^{k}}$ which is not sufficient. On the contrary, multiple induction allows to calculate indefinitely values of the sequence. First, one starts with $n$ and its adjacents $(n-1)$ $(n+1)$, then induces $(2n-1), (2n), (2n+1)$, which can be pursued thereafter independently from any of the three latter points (somehow _horizontally_ and _vertically_), and so on, over again, leading to infinite induction and complete sequencing.
 
 $$  \begin{cases}
         F_{0} \\
@@ -625,7 +626,7 @@ To end with, together with $O$ notation for worst-case classification, there exi
 
 Occurences of the Fibonacci sequence are countless in life.
 
-It is fair to say $\varphi$ has inspired many greatest minds of all ages and all disciplines like no other number in history. The idea of an omnipresence of the golden ratio is often taken up. Nonetheless, divergence of opinion about this question raises up for the natural sciences because it largley depends on the criteria allowing the golden ratio to be linked or not to a phenomenon.
+It is fair to say $\varphi$ has inspired many greatest minds of all ages and all disciplines like no other number in history. The idea of an omnipresence of the golden ratio is often taken up. Nonetheless, divergence of opinion about this question raises up for the natural sciences because it largely depends on the criteria allowing the golden ratio to be linked or not to a phenomenon.
 
 Here are a selection of practical _easy access_ uses around Fibonacci sequence.
 
@@ -638,7 +639,7 @@ Because $1$ mile $\sim 1.609$ meters and $F_{n+1} / F_{n} = \varphi \sim 1.6180$
 
 **Enumerative problems**
 
-Fibonacci numbers give solution to certain enumerative problems, including the **rabbit problem** stated by Fibonacci himself! One most common of which is counting the number of ways of writing a given number $n$ as an ordered sum made up of $1$ and/or $2$, i.e. $(1,2)$-**restricted compositions**.
+Fibonacci numbers give solution to certain enumerative problems, including the **rabbit problem** initiated by Fibonacci himself! One most common is counting the number of ways of writing a given number $n$ as an ordered sum made up of $1$ and/or $2$, i.e. $(1,2)$-**restricted compositions**.
 
 There are actually $F_{n+1}$ compositions.
 
@@ -662,9 +663,9 @@ Different _stories told_ for an identical solution are like so:
 
 **Heads or tails**
 
-$F_{n+2}$ is the number of plays $P_{n}$ in a serie of length $n$ draws without consecutive _tails_. For example, out of the $16$ binary string possibilities for a game of length $n=4$, there are $F_{6}=8$ without two _tails_ in a row:
+$F_{n+2}$ is the number of plays $P_{n}$ for a serie of draws with length $n$ without consecutive _tails_. For example, out of the $16$ binary string possibilities for a game of length $n=4$, there are $F_{6}=8$ without two _tails_ in a row:
 
-$\quad 0000, 0001, 0010, 0100, 0101, 1000, 1001$ and $1010$.
+$\quad 0000, 0001, 0010, 0100, 0101, 1000, 1001$ and $1010$. (_tails_ $\to 1$, _heads_ $\to 0$)
 
 In order to build a game of length $n$ where no two consecutive _tails_ are drawn, one can either start with a _heads_ plus a game of length $(n-1)$, or start with a _tails_ $+$ _heads_ then a game of length $(n-2)$. Hence $P_{n} = P_{n-1} + P_{n-2}$.
 
@@ -699,66 +700,39 @@ But guessing without data is a terrible solution. You are nearly as likely to ma
 
 https://www.nayuki.io/page/fast-fibonacci-algorithms
 https://www.nayuki.io/page/karatsuba-multiplication
-https://www.nayuki.io/category/programming
-https://www.nayuki.io/
 
 https://en.wikipedia.org/wiki/Hexadecimal
 https://en.wikipedia.org/wiki/Low-level_programming_language
 https://en.wikipedia.org/wiki/X86
 
-https://en.wikipedia.org/wiki/Fibonacci_sequence
-https://en.wikipedia.org/wiki/Exponentiation_by_squaring
-https://en.wikipedia.org/wiki/Karatsuba_algorithm
 https://en.wikipedia.org/wiki/Multiplication_algorithm
-https://en.wikipedia.org/wiki/Golden_ratio
-https://fr.wikipedia.org/wiki/Nombre_d%27or
-https://en.wikipedia.org/wiki/Euclid%27s_Elements
+https://en.wikipedia.org/wiki/Karatsuba_algorithm
+https://en.wikipedia.org/wiki/Binary_multiplier
+https://en.wikipedia.org/wiki/Dadda_multiplier
 
 https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm
 https://en.wikipedia.org/wiki/Binary_search_algorithm
 https://fr.wikipedia.org/wiki/Recherche_dichotomique
-https://en.wikipedia.org/wiki/Big_O_notation
 
 https://www.youtube.com/playlist?list=PLhQjrBD2T380F_inVRXMIHCqLaNUd7bN4
 https://www.youtube.com/playlist?list=PLhQjrBD2T381WAHyx1pq-sBfykqMBI7V4
-https://www.youtube.com/watch?v=4oqjcKenCH8&list=PLhQjrBD2T380F_inVRXMIHCqLaNUd7bN4&index=4
-
-https://en.wikipedia.org/wiki/Binary_multiplier
-https://en.wikipedia.org/wiki/Dadda_multiplier
 
 https://python.plainenglish.io/karatsuba-multiplication-65a2efcccfd9
 
 https://tomrocksmaths.com/2022/08/31/how-do-computers-do-maths/
 https://www.mjr19.org.uk/courses/lect1.pdf
-https://persons.iis.nsk.su/files/persons/pages/rustep30dec21faifel.pdf
 https://arxiv.org/ftp/arxiv/papers/2112/2112.10895.pdf
 
 https://maa.org/press/periodicals/convergence/russian-multiplication-microprocessors-and-leibniz
 
 https://wimal-perera.medium.com/golden-ratio-and-fibonacci-numbers-the-ultimate-toolkit-for-defining-the-geometry-of-universe-50829526e154
 
-https://library.ethz.ch/en/locations-and-media/platforms/virtual-exhibitions/fibonacci-un-ponte-sul-mediterraneo/reception-of-fibonacci-numbers-and-the-golden-ratio/euclid-construction-of-the-golden-ratio.html
-
-<!-- FUN -->
-https://fr.wikipedia.org/wiki/Suite_de_Fibonacci#Interpr%C3%A9tations_combinatoires
-https://www.cantorsparadise.com/why-does-1-89-represent-the-fibonacci-sequence-7e09873533c3
-https://fr.wikipedia.org/wiki/Suite_de_Fibonacci#Interpr%C3%A9tations_combinatoires
-https://engrmuhammadusman108.medium.com/kilometres-to-miles-conversion-approximation-of-fibonacci-series-d824add3d89c
-
-https://brilliant.org/wiki/fast-fibonacci-transform/
-https://brilliant.org/wiki/karatsuba-algorithm/
-
-https://medium.com/@cmchang/master-fibonacci-9b689facfe61
 https://medium.com/@sohnnick/unicode-and-hexadecimal-simplified-69e49f95ad62
 
-https://robwilsondev.medium.com/bigo-and-beyond-how-to-compute-fibonacci-sequence-efficiently-with-matrix-exponentiation-d9924545fe54
 https://medium.com/codex/bit-manipulation-in-javascript-117cd525e4d
 https://www.codecademy.com/resources/docs/javascript/bitwise-operators
 https://blog.logrocket.com/guide-javascript-bitwise-operators/
 https://bootcamp.uxdesign.cc/bitwise-operators-in-javascript-their-usage-in-real-life-scenarios-9242c666b51
-
-https://cp-algorithms.com/algebra/fibonacci-numbers.html
-https://cp-algorithms.com/algebra/binary-exp.html
 
 https://www.freecodecamp.org/news/introduction-to-algorithms-with-javascript-examples/#sorting-algorithms
 
