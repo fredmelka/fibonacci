@@ -58,9 +58,9 @@ const n = 10000;
 const _generate = (n) => {let int=''; do {int += ~~(Math.random() * 10)} while (--n); return BigInt(int)};
 const _multiplication = (fn) => {console.time(fn.name); fn(i, j); console.timeEnd(fn.name);};
 
-let [i, j] = [_generate(n), _generate(n)];
+let i =_generate(n); let j = _generate(n);
 
-_multiplication(machine);
+_multiplication(machine); // Hardware obviously way more powerful than emulation!!
 _multiplication(gradeSchool);
-_multiplication(karatsubaDecimal);
+_multiplication(karatsubaDecimal); // Fast algorithm emulation
 _multiplication(karatsubaBinary);

@@ -1,7 +1,7 @@
 
 const n = 1000000;
 const _process = (fn) => {console.time(fn.name); fn(n); console.timeEnd(fn.name);};
-// Fibonacci Computational Methods
+// Fibonacci computational methods
 
 const dynamicProgramming = (n) => {
     let [fib_i, fib_j] = [1n, 0n], i = 2;
